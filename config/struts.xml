@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+<constant name="struts.convention.exclude.packages" value="org.apache.struts.*,org.apache.struts2.*,org.springframework.web.struts.*,org.springframework.web.struts2.*,org.hibernate.*,WarFileName.*"/>
+	<!-- 禁用动态方法访问 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<!-- 配置成开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 配置拓展名为do和action -->
+	<constant name="struts.action.extension" value="do,action" />  
+	<!-- 把主题配置成simple -->
+	<constant name="struts.ui.theme" value="simple" />
+	
+	
+	<!-- 因为Ajax请求使用的都是UTF-8的编码方式  --> 
+    <constant name="struts.i8n.encoding" value="UTF-8" />
+	
+	<!-- 配置全局结果及异常映射 -->
+	<package name="base-default" extends="struts-default" namespace="/">
+	
+	
+  	
+  	
+  	
+	</package>
+	
+	<package name="ajax" extends="json-default" namespace="/">
+		 	<action name="jsonAjax" class="org.fudan.wuxi.action.login.LoginAction">  
+			<!-- 将返回类型设置为json -->
+       		 <result type="json"></result>
+ 	 	 </action>   
+	</package>
+	
+	
+			<!-- 包含sensor的struts配置文件 -->
+	<include file="org/fudan/wuxi/syfw/action/sensor/config/sensor-struts.xml"></include>
+		<!-- 包含feed的struts配置文件 -->
+ 	<include file="org/fudan/wuxi/syfw/action/feed/config/feed-struts.xml"></include>
+ 	
+		<!-- 包含trace的struts配置文件 -->
+ 	<include file="org/fudan/wuxi/syfw/action/trace/config/trace-struts.xml"></include>
+ 	
+ 		<!-- 包含sale的struts配置文件 -->
+ 	<include file="org/fudan/wuxi/syfw/action/sale/config/sale-struts.xml"></include>
+ 	
+ 	<!-- 包含supervisor的struts配置文件 -->
+ 	<include file="org/fudan/wuxi/syfw/action/supervisor/config/supervisor-struts.xml"></include>
+
+ 	
+ 	
+ 	<!--
+		包含user(用户管理)的struts配置文件
+	<include file="org/fudan/wuxi/action/syfw/user/config/user-struts.xml"></include>
+		包含role(角色管理)的struts配置文件
+	<include file="org/fudan/wuxi/action/syfw/role/config/role-struts.xml"></include> -->
+	
+</struts>

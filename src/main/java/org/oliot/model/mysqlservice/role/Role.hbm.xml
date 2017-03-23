@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.oliot.model.mysqlservice.role.Role" table="role">
+		<id name="roleId" type="java.lang.String">
+			<column name="role_id" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="roleName" type="java.lang.String">
+			<column name="roleName" length="20" not-null="true" />
+		</property>
+		  <!-- 用户和权限多对多映射 -->  
+        <set name="privileges" table="t_role_privilege"  cascade="save-update,delete">  <!--级联保存更新和删除  -->
+            <key column="roleId"></key>  
+            <many-to-many class="org.oliot.model.mysqlservice.privilege.Privilege" column="privilegeId"></many-to-many>  
+        </set>  
+		
+		<!-- <set name="rolePrivileges" inverse="true" lazy="false" cascade="save-update,delete">
+			<key>
+				<column name="role_id"></column>
+			</key>
+			<one-to-many class="cn.itcast.nsfw.role.entity.RolePrivilege"/>
+		</set> -->
+	</class>
+</hibernate-mapping>

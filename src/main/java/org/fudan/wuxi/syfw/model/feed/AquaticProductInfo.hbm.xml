@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.fudan.wuxi.syfw.model.feed">
+	
+	<class name="AquaticProductInfo" table="t_aquacticProductInfo">
+		<id name="id" type="java.lang.String">
+			<column name="aquticproductId" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="name" length="20"></property>
+		
+	 	<property name="thumbnail" type="java.lang.String">
+			<column name="thumbnail" length="500" not-null="false" />
+		</property>	 	
+		<property name="description" type="java.lang.String">
+			<column name="description" length="50" not-null="true" />
+		</property>
+		<property name="epc" type="java.lang.String">
+			<column name="epc" length="50" not-null="true" />
+		</property>
+		<property name="no" type="java.lang.String">
+			<column name="no" length="100" />
+		</property>
+		<property name="storage" type="java.lang.Integer">
+			<column name="storage" />
+		</property>
+		<property name="brief" type="java.lang.String">
+			<column name="brief" length="50" />
+		</property>
+		<property name="createdTime" type="java.sql.Timestamp">
+			<column name="createdTime" length="20" />
+		</property>
+		<property name="status" type="java.lang.Integer">
+			<column name="status" length="10" />
+		</property>
+		<property name="nameEn" type="java.lang.String">
+			<column name="nameEn" length="50" />
+		</property> 
+	 	<property name="pitcure" type="java.lang.String">
+			<column name="pitcure" length="500" />
+		</property>
+		
+		<property name="specification" type="java.lang.String">
+			<column name="specification" length="200" />
+		</property>
+		<property name="expiration" type="java.lang.Integer">
+			<column name="expiration" length="10" />
+		</property>
+		<property name="expirationUnit" type="java.lang.Integer">
+			<column name="expirationUnit" length="10" />
+		</property>
+		<property name="sourceArea" type="java.lang.String">
+			<column name="sourceArea" length="50" />
+		</property>
+	
+		<property name="brand" type="java.lang.Integer">
+			<column name="brand" length="10" />
+		</property>
+		<property name="price" type="java.lang.Double">
+			<column name="price" length="50" />
+		</property>
+		
+		<property name="pirceUnit" type="java.lang.Integer">
+			<column name="pirceUnit" length="10" />
+		</property>
+		
+		
+
+		<!-- 
+			多对多映射:
+			1.  映射的集合属性： “developers”
+			2.  集合属性，对应的中间表： “t_relation”
+			3. 外键字段:  prjId
+			4. 外键字段，对应的中间表字段:  did
+			5.   集合属性元素的类型
+		 -->
+<!-- 		  <set name="catalogiesset" table="t_product_category_relation" cascade="save-update"> -->
+		<!--  <set name="catalogiesset" table="t_product_category_relation" cascade="save-update">
+		 	<key column="aquticproductId"></key>
+		 	<many-to-many column="categoryid" class="AquaticProductCategory"></many-to-many>
+		 </set> -->
+		 
+	</class>
+	
+
+</hibernate-mapping>

@@ -1,0 +1,121 @@
+<!-- <!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+ -->
+<web-app>
+	<display-name> EPCIS 1.1</display-name>
+ <!-- 由上面的初始化过程可知容器对于web.xml的加载过程是context-param >> listener  >> fileter  >> servlet -->
+	<!-- CXF -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<filter>
+	    <filter-name>CorsFilter</filter-name>
+	    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>CorsFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+		<!-- =========================================================此处往下是2016年12月22号后新增的关于struts的jar包===================== -->
+		<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>  
+    <filter-name>struts2</filter-name>  
+    <url-pattern>*.do</url-pattern>  
+  	</filter-mapping>  
+	<filter-mapping>  
+         <filter-name>struts2</filter-name>  
+    	<url-pattern>*.action</url-pattern>  
+	</filter-mapping>  
+	
+ 	<!-- 为了使用struts标签   http://0411.iteye.com/blog/1071442-->
+<!--		<filter-mapping>  
+         <filter-name>struts2</filter-name>  
+    	<url-pattern>/*</url-pattern>  
+	</filter-mapping>  
+	 -->
+
+	<!-- ==============================================================此处往上是2016年12月22号后新增的关于struts的jar包========================================================== -->
+	
+	
+	
+	<!-- web容器在启动的时候，先读取web.xml配置文件中的两个节点<listener>和<contex-param> ，创建ServletContext对象，并将<context-param>的 参数封装到ServletContext对象
+	中，所以ContextLoaderListener中可以读取context-param里面封装的参数-->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	
+
+	<!-- Web Service Initialization , Configuration, Termination -->
+	<listener>
+		<listener-class>
+			org.oliot.epcis.configuration.Configuration
+		</listener-class>
+	</listener>
+
+	<!-- CXF Web Service -->
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<display-name>CXF Servlet</display-name>
+		<servlet-class>
+			org.apache.cxf.transport.servlet.CXFServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Subscription Test Servlet -->
+	<servlet>
+		<servlet-name>SubscriptionTestServlet</servlet-name>
+		<display-name>SubscriptionTestServlet</display-name>
+		<description></description>
+		<servlet-class>org.oliot.epcis.service.query.mongodb.SubscriptionTestServlet</servlet-class>
+	</servlet>
+
+	<!-- Spring Framework MVC -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- <init-param> <param-name>contextConfigLocation</param-name> <param-value> 
+			/WEB-INF/beans.xml /WEB-INF/main.xml </param-value> </init-param> -->
+	</servlet>
+	<!-- 
+	在开发java webservice时，有两个比较流行的框架：axis2和cxf。
+	cxf可以无缝的和spring集成，而axis2需要打包成aar文件，在tomcat下面跑。于是我们选择了cxf开发webservice。
+	 -->
+	 <!--==这个设置很重要，那么我们的webservice的地址就是http://localhost:8080/yourProgramName/webservice/Greeting===-->
+	<!-- CXF Web Service -->
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/webservice/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Spring Framework MVC -->
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>*.mvc</url-pattern>
+		<!-- 	<url-pattern>/Service/*</url-pattern> -->
+	</servlet-mapping>
+	
+	<!-- Subscription Test Servlet -->
+	<servlet-mapping>
+		<servlet-name>SubscriptionTestServlet</servlet-name>
+		<url-pattern>/SubscriptionTestServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+		<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	
+</web-app>

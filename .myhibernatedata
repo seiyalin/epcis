@@ -1,0 +1,20 @@
+#MyEclipse Hibernate Properties
+#Fri Mar 10 11:05:09 CST 2017
+genBasicCompId=false
+sessionFactoryName=org.fudan.wuxi.syfw.model.hibentity.complain
+profile=
+daoSFId=
+jndiPath=
+detectM2M=true
+reStrategyClass=
+detectO2O=false
+springDaoFile=
+useJavaTypes=true
+keyGenerator=native
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=/epcis Maven Webapp/hibernate.reveng.xml
+configFile=/epcis Maven Webapp/src/main/java/complaint.cfg.xml
+createConfigFile=true

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="supervisor-action" namespace="/jsp/syfw/feed" extends="base-default,json-default">
+	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+		
+		<action name="complaint_loadForUpdate" class="org.fudan.wuxi.syfw.action.supervisor.SupervisorAction" method="loadForUpdate">
+		
+			<result type="json" >
+				<param name="root">update_obj</param>
+			</result>
+	
+		</action>
+		
+		
+	    
+	    <!--插入投诉信息 -->
+	    <action name="complaint_insert" class="org.fudan.wuxi.syfw.action.supervisor.SupervisorAction" method="insertComplaint">
+		
+			<result type="json" >
+				<param name="root">isInsertSuccess</param>
+			</result>
+	
+	    </action>
+	    
+	     <!--插入投诉回复 -->
+	    <action name="answer_insert" class="org.fudan.wuxi.syfw.action.supervisor.SupervisorAction" method="insertQandA">
+		
+			<result type="json" >
+				<param name="root">isInsertSuccess</param>
+			</result>
+	
+	    </action>
+		
+		 <!--删除投诉信息 -->
+	    <action name="complaint_delete" class="org.fudan.wuxi.syfw.action.supervisor.SupervisorAction" method="delete">
+		
+			<result type="json" >
+				<param name="root">isDeleteSuccess</param>
+			</result>
+	
+	    </action>
+	    
+	     <!--删除投诉信回复-->
+	    <action name="answer_delete" class="org.fudan.wuxi.syfw.action.supervisor.SupervisorAction" method="deleteAnswer">
+		
+			<result type="json" >
+				<param name="root">isDeleteSuccess</param>
+			</result>
+	
+	    </action>
+		
+		    <!--获取当前所有投诉信息并显示  -->
+	    <action name="complaint_getList" class="org.fudan.wuxi.syfw.action.supervisor.SupervisorAction" method="getComplaintList">
+		
+			<result type="json" >
+				<param name="root">complaintInfoList</param>
+			</result>
+	
+	    </action>
+	      
+		
+		  <!--编辑投诉信息 -->
+	    <action name="complaint_update" class="org.fudan.wuxi.syfw.action.supervisor.SupervisorAction" method="updateComplaint">
+		
+			<result type="json" >
+				<param name="root">isUpdateSuccess</param>
+			</result>
+	
+	    </action>
+		<!-- 
+			<action name="feed_*" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="{1}">
+		
+			<result type="json" >
+				<param name="root">result</param>
+			</result>
+			
+		</action> -->
+		
+		
+		
+		
+	</package>
+
+</struts>

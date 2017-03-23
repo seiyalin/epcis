@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.fudan.wuxi.syfw.model.feed">
+	
+	<class name="AquaticProductCategory" table="t_aquaticc_category">
+			<id name="id" type="java.lang.String">
+			<column name="categoryid" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="name" length="20"></property>
+		
+	
+		<!-- 
+			多对多映射配置： 员工方
+				name  指定映射的集合属性
+				table 集合属性对应的中间表
+				key   指定中间表的外键字段(引用当前表t_developer主键的外键字段)
+				many-to-many
+					column 指定外键字段对应的项目字段
+					class  集合元素的类型
+		 -->
+		<set name="productInfos" table="t_product_category_relation">
+			<key column="categoryid"></key>
+			<many-to-many column="aquticproductId" class="AquaticProductInfo"></many-to-many>
+		</set>
+		
+		 
+	</class>
+	
+
+</hibernate-mapping>

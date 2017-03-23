@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.oliot.model.mysqlservice.UserRole" table="user_role">
+	
+	<!-- 只是配置了name和class属性，name指定了实体类中的主键类属性名，class指定了主键类类型。 -->
+	<!-- 用户和角色是多对多的关系，引入中间表usr_role之后，就编程一个用户可以对应多个角色 -->
+		<composite-id name="id" class="org.oliot.model.mysqlservice.UserRoleId">
+		<!--  关闭懒加载是为了业务需要，不需要在使用的时候再去查询，-->
+			<key-many-to-one name="role" lazy="false" class="org.oliot.model.mysqlservice.role.Role">
+				<column name="role_id"></column>
+			</key-many-to-one>
+			<key-property name="userId" type="java.lang.String">
+				<column name="user_id" length="32"></column>
+			</key-property>
+		</composite-id>
+	</class>
+
+</hibernate-mapping>
+	

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.oliot.model.mysqlservice.User" table="user">
+		<id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="userName" type="java.lang.String">
+			<column name="userName" length="20" not-null="true" />
+		</property>
+		<property name="passWord" type="java.lang.String">
+			<column name="passWord" length="20" not-null="true" />
+		</property>		
+			<property name="headImg" type="java.lang.String">
+			<column name="headImg" length="100" />
+		</property>
+				<property name="mobile" type="java.lang.String">
+			<column name="mobile" length="20" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="email" length="50" />
+		</property>
+		<property name="companyName" type="java.lang.String">
+			<column name="companyName" length="20" />
+		</property>
+		<property name="companyAddress" type="java.lang.String">
+			<column name="companyAddress" length="200" />
+		</property>
+	</class>
+
+</hibernate-mapping>
+	

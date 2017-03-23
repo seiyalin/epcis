@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="trace-action" namespace="/jsp/syfw/feed" extends="base-default,json-default">
+	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+		<action name="trace_getList" class="org.fudan.wuxi.syfw.action.trace.TraceAction" method="getList">
+		
+			<result type="json" >
+				<param name="root">traceInfoList</param>
+			</result>
+	
+		</action>
+	<!--由epc获取追溯的详细信息  -->
+	<action name="trace_getListByEpc" class="org.fudan.wuxi.syfw.action.trace.TraceAction" method="getListByEpc">
+		
+			<!-- <result type="json" >
+				<param name="root">traceInfoList</param>
+			</result>
+	 -->
+			 <result name="traceresult">/jsp/syfw/feed/traceresult.jsp</result>
+		</action>
+
+		
+<!-- 			<action name="user_*" class="org.fudan.wuxi.action.syfw.user.UserAction" method="{1}">
+			<result name="listUI">/jsp/syfw/user/listUI.jsp</result>
+			<result name="{1}">/jsp/syfw/user/{1}.jsp</result>
+			<result name="list" type="redirectAction">重定向到 当前action下的 user_listUI.action ，所以可以不写namespace参数。 可以解决页面刷新导致不想要的结果
+				<param name="actionName">user_listUI.action</param>
+			
+			</result>
+			<result type="json" name="annualStatisticData">
+				<param name="root">statisticMap</param>
+			</result>
+		</action> -->
+		
+	</package>
+
+</struts>

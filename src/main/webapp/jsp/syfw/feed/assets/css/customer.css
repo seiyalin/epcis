@@ -1,0 +1,116 @@
+/* .checker input[type="checkbox"]{
+	left : 1%;
+	opacity : 1; 
+} */
+.dataTables_filter input[type="search"]{
+	display:none;
+}
+.checkbox_label{
+	margin-bottom: 0px;
+	margin-left: 15%;
+}
+.bdmp_confirm{
+	margin-top:15%;
+}
+.bdmp_confirm .modal-dialog{
+	width:380px;
+}
+.bdmp_confirm .bootbox-body{
+	height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.bdmp_confirm .bootbox-body i{
+	font-size: 30px;
+	vertical-align : middle;
+}
+.bdmp_confirm .bootbox-body .font{
+	font-size: 20px;
+	vertical-align : middle;
+} 
+.bdmp_confirm .modal-footer{
+	text-align:center;
+}
+.text-right{
+text-align: right;
+}
+
+
+.page-item-title{
+  display: block;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(0,0,0,.2);
+  font-size: 15px;
+  font-weight: 300;
+  color: #262626;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  font-family: "Microsoft YaHei" ! important;
+}
+
+.page-item{
+	  margin-bottom: 15px;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/*图片处理css*/
+.modal-dialog.zm-light-box {
+  border-radius: 0;
+  background: transparent;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow: auto;
+  padding: 0;
+  -webkit-perspective: 1000;
+}
+
+
+.zm-light-box-x1 {
+  font-size: 0;
+  text-align: center;
+}
+
+.zm-light-box-x2 {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 40px;
+}
+
+.zm-light-box-footer {
+ text-align: center;
+ line-height: 22px;
+}
+a.zm-light-box-show-origin {
+  color: #888;
+  padding: 10px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+img.little-img{ 
+  cursor: -moz-zoom-in;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+  /*cursor: url(/static/img/zoom-in.cur);*/
+  }
+  img.zm-light-box-img-el.big-img{
+  cursor: -moz-zoom-out;
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out;
+ /*cursor: url(/static/img/zoom-out.cur);*/ 
+}

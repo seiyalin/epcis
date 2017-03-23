@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>养殖阶段</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../css\dist\css\bootstrap.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<style>
+
+#nav a{color:black;}
+#nav li{margin-right:110px; }
+#header{    width:100%;
+			margin-bottom: 0px;
+			padding:20px ;
+			position: relative;
+   }
+#reg{
+
+  width: 60%;
+  margin-top: 40px;
+}
+
+#footer{position: absolute;bottom: 0px;width:100%;}
+#left{ padding: 10px;
+       margin-top: 1px;
+       float:left;
+       width:200px;
+       border: solid 2px red;
+       height:550px;
+       margin-left: 20px;
+      
+
+
+
+}
+
+#right{ margin-left: 230px;
+       border:solid 2px ;
+       width:70%;
+       height:550px;
+       overflow: auto;
+
+
+}
+#company{margin-top: 10px;
+
+
+}
+input:after{
+
+  content:"*";
+  color:red;
+}
+
+</style>
+</head>
+<body class="bg-info">
+	<div class="container-fluid" id="container">
+
+		<div id="navbar" >
+		<div id="header" class="bg-warning"><h2>欢迎访问水产品溯源系统</h2>
+
+        
+
+
+		</div>
+  </div>
+
+		<div id="linknav" >
+   		<ul id="nav"class="nav nav-pills bg-primary nav-justified ">
+   			<li><a href="main.html" >主页</a></li>
+   			<li><a href="feed.html">养殖阶段</a></li>
+   			<li><a href="transport.html">运输阶段</a></li>
+  		    <li><a href="factory.html">加工阶段</a></li>
+  		    <li><a href="market.html">销售阶段</a></li>
+
+        </ul>
+      </div>
+
+   </div>
+    
+<div id="companyinfo">
+
+     <div id="left" class="bg-success">
+       
+      <ul class="nav nav-pills nav-stacked" style="text-align:left;margin:30px auto ; ">
+        <li>  <a href="#company"><span class="glyphicon glyphicon-cog"></span>养殖企业信息</a></li>
+        <li><a href="#worker"><span class="glyphicon glyphicon-user">工作人员信息</a></li>
+        <li><a href="#fish"><span class="glyphicon glyphicon-flag"></span>养殖情况记录</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-leaf"></span>水产品去向</a></li>
+     
+ 
+      </ul>
+
+   
+
+     </div>
+
+
+     <div id="right">
+      <div id="company">
+        <form class="form-horizontal">
+          <field>
+            <legend>养殖企业信息</legend>
+          <div class="form-group">
+              <label for="inputName" class="col-sm-4 control-label">养殖基地名称</label>
+              <div class="col-sm-4">
+                 <input type="text" class="form-control" id="inputName" >
+               </div>
+          </div>
+          <div class="form-group">
+              <label for="inputlawerman" class="col-sm-4 control-label">法人代表</label>
+              <div class="col-sm-4">
+                 <input type="text" class="form-control" id="inputlawerman" >
+               </div>
+          </div>
+            <div class="form-group">
+              <label for="inputAddress" class="col-sm-4 control-label">地址</label>
+              <div class="col-sm-4">
+                 <input type="text" class="form-control" id="inputAddress" >
+               </div>
+          </div> 
+          <div class="form-group">
+              <label for="inputTel" class="col-sm-4 control-label">电话</label>
+              <div class="col-sm-4">
+                 <input type="tel" class="form-control" id="inputTel" >
+               </div>
+          </div>
+           <div class="form-group">
+              <label for="inputFile" class="col-sm-4 control-label">请上传营业执照截图</label>
+              <div class="col-sm-4">
+                 <input type="file" class="form-control" id="inputFile" >
+              
+               </div>
+          </div>
+
+          </field>                                   
+        </form>
+
+
+      </div>
+
+
+      <div id="worker">
+         <form class="form-horizontal">
+          <field>
+            <legend>养殖员工信息</legend>
+               <div class="form-group">
+              <label for="workerName" class="col-sm-4 control-label">养殖人员姓名</label>
+              <div class="col-sm-4">
+                 <input type="text" class="form-control" id="workerName" >
+               </div>
+              </div>
+
+                <div class="form-group">
+              <label for="workerAge" class="col-sm-4 control-label">养殖人员年龄</label>
+              <div class="col-sm-4">
+                 <input type="text" class="form-control" id="workerAge" >
+               </div>
+              </div>
+
+                <div class="form-group">
+              <label for="workerHeathy" class="col-sm-4 control-label">身体健康状态</label>
+              <div class="col-sm-4">
+                 <input type="text" class="form-control" id="workerHealthy" >
+               </div>
+
+            </div>
+
+          </field>  
+        </form>
+      </div>
+ 
+
+
+       <div id="fish">
+         <form class="form-horizontal">
+          <field>
+            <legend>养殖情况记录</legend>
+               <div class="form-group">
+              <label for="fishBatch" class="col-sm-4 control-label">养殖批次</label>
+              <div class="col-sm-4">
+                 <input type="text" class="form-control" id="fishBatch" >
+               </div>
+              </div> 
+
+
+                <div class="form-group">
+              <label for="fishTime" class="col-sm-4 control-label">入塘时间</label>
+              <div class="col-sm-4">
+                 <input type="date" class="form-control" id="fishTime" >
+               </div>
+              </div>
+
+
+                <div class="form-group">
+              <label for="fishNum" class="col-sm-4 control-label">网箱编号</label>
+              <div class="col-sm-4">
+                 <input type="number" class="form-control" id="fishNum" >
+               </div>
+
+              </div>
+
+              <div >
+                 <strong class="col-md-offset-3" >实时水质传感器数据</strong>
+                 <div class="well well-sm">
+                  <div class="row">
+                    <div class="col-md-3">水温实时数据</div>
+                    <div class="col-md-3">水含氧量实时数据</div>
+                    <div class="col-md-3">实时ph值</div>
+                    <div class="col-md-3">有害物质浓度实时数据</div>
+
+                  </div>
+
+
+                 </div>
+               </div>
+
+          </field>  
+
+    </form>
+
+      </div>
+
+   
+ </div>
+
+
+
+
+ <div id="footer" class="row bg-primary">
+
+      
+        <div class="center-block"style="width:500px;padding:20px">
+
+      	 版权所有：复旦大学无锡研究院 CopyRight &copy; 2016<br />
+        咨询电话：86-510-85622268  传真号码：86-510-85623633
+
+         
+            </div>
+
+      </div>
+
+</div>
+<script>
+$(".close").click(function(){
+
+$("#inputFile").value=" ";
+
+})
+</script>
+
+</body>
+</html>

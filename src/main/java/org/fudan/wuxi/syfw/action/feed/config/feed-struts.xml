@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="feed-action" namespace="/jsp/syfw/feed" extends="base-default,json-default">
+	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+		<action name="feed_getAll" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="getAll">
+		
+			<result type="json" >
+				<param name="root">brand</param>
+			</result>
+	
+		</action>
+		
+			<action name="feed_loadForUpdate" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="loadForUpdate">
+		
+			<result type="json" >
+				<param name="root">update_obj</param>
+			</result>
+	
+		</action>
+		
+		
+		<!-- 配置水产品的类别请求 -->
+		<action name="feed_getCatalogyTreeList" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="getCatalogyTreeList">
+		
+			<result type="json" >
+				<param name="root">jdata</param>
+			</result>
+	
+	    </action>
+	    
+	    <!--插入水产品基本信息  -->
+	    <action name="feed_insert" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="insert">
+		
+			<result type="json" >
+				<param name="root">isInsertSuccess</param>
+			</result>
+	
+	    </action>
+		
+		
+		    <!--获取当前所有水产品基本信息并显示  -->
+	    <action name="feed_getList" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="getAquaticProductInfoList">
+		
+			<result type="json" >
+				<param name="root">productInfoList</param>
+			</result>
+	
+	    </action>
+	    
+	      <!--删除水产品信息 -->
+	    <action name="feed_delete" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="delete">
+		
+			<result type="json" >
+				<param name="root">isDeleteSuccess</param>
+			</result>
+	
+	    </action>
+		
+		  <!--编辑水产品信息 -->
+	    <action name="feed_update" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="update">
+		
+			<result type="json" >
+				<param name="root">isUpdateSuccess</param>
+			</result>
+	
+	    </action>
+		
+			<action name="feed_*" class="org.fudan.wuxi.syfw.action.feed.FeedAction" method="{1}">
+		
+			<result type="json" >
+				<param name="root">result</param>
+			</result>
+		<!-- 	<result  type="json">
+			<param name="root">phValue</param>
+			</result> -->
+		</action>
+		
+		
+		
+		
+	</package>
+
+</struts>

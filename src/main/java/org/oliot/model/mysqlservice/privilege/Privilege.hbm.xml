@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+ <class name="org.oliot.model.mysqlservice.privilege.Privilege" table="t_privilege">  
+        <id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+        <property name="url"></property>  
+        <property name="name"></property>  
+          
+        <!-- 与role的多对多关系 -->  
+        <set name="roles" table="t_role_privilege">  
+            <key column="privilegeId"></key>  
+            <many-to-many class="org.oliot.model.mysqlservice.role.Role" column="roleId"></many-to-many>  
+        </set>  
+          
+       <!-- 与上级多对一的关系 -->  
+      <!--   <many-to-one name="parent" class="org.oliot.model.mysqlservice.privilege.Privilege" column="parentId"></many-to-one>   -->
+          
+ <!--        与下级一对多的关系  
+        <set name="children">  
+            <key column="parentId"></key>  
+            <one-to-many class="org.oliot.model.mysqlservice.privilege.Privilege"/>  
+        </set>    -->
+    </class>  
+      
+</hibernate-mapping>
