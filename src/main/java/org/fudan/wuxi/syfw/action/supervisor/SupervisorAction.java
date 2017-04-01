@@ -31,6 +31,7 @@ import org.fudan.wuxi.utils.JsonUtils;
 import com.google.gson.JsonObject;
 import com.merchant.bean.ProductCategory;
 import com.merchant.common.utils.CommonUtils;
+import com.merchant.common.utils.DateUtils;
 import com.merchant.common.utils.GeneralUtils;
 import com.merchant.common.utils.log.LogUtils;
 import com.opensymphony.xwork2.ActionSupport;
@@ -45,6 +46,7 @@ public class SupervisorAction extends ActionSupport {
         private  String				compId;				
         private  String 			questionId;
         private  String				content;
+      /*  @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") */
         private	 Date				comp_time;
         private  String 			status;				//投诉状态
         private  JSONArray			answersList;            //回复list
@@ -55,14 +57,18 @@ public class SupervisorAction extends ActionSupport {
         private  JSONObject			complaintInfoList;
         
         private int 		iDisplayStart;//千万注意set和get方法的写法，默认将收集不到参数
-        private int 		iDisplayLength =1;
+        private int 		iDisplayLength =5;
         private Integer 	sEcho =1;
         
         
         
 		public String insertComplaint() {
+			
         	complaintInfo.setStatus("处理中");
+        	comp_time = new Date();
+        	complaintInfo.setCompTime(comp_time);
         	supervisorService.save(complaintInfo);
+        	setIsInsertSuccess(JsonUtils.toJSONResult(true));
         	return SUCCESS;
 		}
         
@@ -122,6 +128,12 @@ public class SupervisorAction extends ActionSupport {
     			}
         		*/
         		List<Complaint> list = supervisorService.getList(iDisplayStart, iDisplayLength);
+        		/*List<Complaint> data = new ArrayList<Complaint>();
+        		for(Complaint po:list)
+        		{
+        			po.setCompTime(DateUtils.date2String(po.getCompTime(),
+        					DateUtils.YYYY_MM_DD_HH_MM_SS_PATTERN));
+        		}*/
         		int count = supervisorService.getCount();
         		System.out.println("the count of items:"+count);
         		complaintInfoList = JsonUtils.toJSONResult(count, list, sEcho);

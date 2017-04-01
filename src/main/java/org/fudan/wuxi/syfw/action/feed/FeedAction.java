@@ -167,10 +167,7 @@ public class FeedAction extends ActionSupport {
     	
     	
     	
-    	
-    	
-    	
-    	
+    	 	
     	
     	
         

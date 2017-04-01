@@ -1,84 +1,206 @@
-$(function () {
+var catalogyIds;
+$(document).ready(function(){
+	$.get("complaint_getList.do?",function(data){
+			
+		console.log(data);
+	});
+	});
 
-    //1.初始化Table
-    var oTable = new TableInit();
-    oTable.Init();
 
-    //2.初始化Button的点击事件
-    var oButtonInit = new ButtonInit();
-    oButtonInit.Init();
-
+function checkImgType(ths){  
+        if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(ths)) {         
+            return false;  
+        }  
+    return true;  
+} 
+$(document).ready(function(){
+	var oTable = $("#product_datatable").dataTable(
+			$.extend($.fn.bdmp.datatableConf,{
+				"sAjaxSource": "complaint_getList.do?", 
+				"aoColumns" : [
+					{
+					  "aTargets": [0],
+					  "mData": null,
+					  "bSortable": false,
+					  "bSearchable": false ,
+					  "mRender": function (data, type, full) {
+						  return '<label class="checkbox_label"><input class="colored-blue checkboxes" type="checkbox"><span class="text"></span></label>';
+				 		} 
+			   		},
+			   		{
+					  "aTargets": [1],
+					  "mData": null,
+					  "bSortable": false,
+					  "bSearchable": false,
+					  "mRender": function (data) {
+						  return data.beComp;
+						/*  var status = data.status;
+						  if(status == "success"){
+							  return data.beComp;
+						  }else{
+							  return '<font color="red">未处理</font>';
+						  }*/
+				 		} 
+					},
+			   		{
+					  "aTargets": [2],
+					  "mData": null,
+					  "bSortable": false,
+					  "bSearchable": false,
+					  "mRender": function (data) {
+						 /* print(data.cmp_content);*/
+						  return data.cmp_content;
+					  
+					}
+			   		},
+			   		{
+					  "aTargets": [3],
+					  "mData": null,
+					  "bSortable": false,
+					  "bSearchable": false,
+					  "mRender": function (data, type, full) {
+						  return data.tele;
+					  
+					  }
+					},
+					{
+					  "aTargets": [4],
+					  "mData": null,
+					  "bSortable": false,
+					  "bSearchable": false,
+					  "mRender": function (data, type, full) {
+						  return data.status;
+						  /*var status = data.status;
+						  if(status == "success"){
+							  return '<font color="green">已处理</font>';
+						  }else{
+							  return '<font color="red">未处理</font>';
+						  }*/
+				 		} 
+					},{
+					  "aTargets": [5],
+					  "mData": null,
+					  "bSortable": false,
+					  "bSearchable": false,
+					  "mRender": function (data) {
+					
+						  if(data.success == "true"){
+							  return '2017年'+data.compTime.day+'月'+data.compTime.hours+'日';
+						  }else{
+							  return '没有数据';
+						  }
+				 		} 
+			   		}], 
+				"fnInitComplete": function (oSettings,json) {
+					//增加搜索
+					$("#product_datatable_filter").append('<label><span class="input-icon"><input id="name" class="form-control input-sm" type="text" placeholder="请输入名称"><i class="glyphicon glyphicon-search blue"></i></span></label>');
+					var phtml='<label style="margin-left:20px;">'
+						+'<span>状态 ：</span>'
+						+'<select  aria-controls="product_datatable" class="form-control input-sm" id="status">'
+				        +'<option value="" selected="selected">全部</option><option value="2">上架</option><option value="1">下架</option>'
+				        +'</select>'
+				        +'</label>';
+					$("#product_datatable_filter").append(phtml);
+					//增加搜素查询
+			    	$("#product_datatable_length").prepend('<a id="resetButton" href="javascript:void(0);" class="btn btn-yellow" style="margin-right: 10px;"><i class="fa fa-mail-reply"></i>重置</a>');
+			    	$("#product_datatable_length").prepend('<a id="searchButton" href="javascript:void(0);" class="btn btn-blue" style="margin-right: 10px;"><i class="fa fa-search"></i>搜索</a>');
+			    },
+			    "fnDrawCallback": function(oSettings){
+			    	$("#product_datatable .group-checkable").prop("checked", false);
+			    	/*renderButtonFn();*/
+			    },
+			    "fnServerParams": function (aoData) {
+			    	$.fn.bdmp.addParam(aoData,{"name":"name", "value":$.trim($("#product_datatable_filter #name").val())});
+			    	$.fn.bdmp.addParam(aoData,{"name":"status", "value":$.trim($("#product_datatable_filter #status").val())});
+			    },
+			    
+			})
+			);
 });
+$("#addButton").on("click", function () {
+	$.ajax({
+        url: 'feed_getAll.do',
+        type: 'POST',
+        dataType: 'json',
+        success: function (response) {
+        	$("#addDialog #brand").find("option").remove();
+        	$("#addDialog #brand").append($("<option>").text("请选择").val("0"));
+            if (response.success===true){
+            	for(var i=0;i<response.aaData.length;i++){
+            		if(response.aaData[i].id == 10001)
+            			continue;
+            		var option = $("<option>").text(response.aaData[i].name).val(response.aaData[i].id);
+            		$("#addDialog #brand").append(option);
+            	}
+            	
+            	catalogyIds = new Array();
+        		var addDialog = bootbox.dialog({
+                    message: $("#addDialog").html(),
+                    title: "添加投诉",
+                    className: "modal-darkorange",
+                    buttons: {
+                        "保存": {
+                            className: "btn-primary",
+                            callback: function () {
 
-
-var TableInit = function () {
-    var oTableInit = new Object();
-    //初始化Table
-    oTableInit.Init = function () {
-        $('#tb_departments').bootstrapTable({
-            url: 'complaint_getList.do',         //请求后台的URL（*）
-            method: 'get',                      //请求方式（*）
-            toolbar: '#toolbar',                //工具按钮用哪个容器
-            striped: true,                      //是否显示行间隔色
-            cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-            pagination: true,                   //是否显示分页（*）
-            sortable: false,                     //是否启用排序
-            sortOrder: "asc",                   //排序方式
-            queryParams: oTableInit.queryParams,//传递参数（*）
-            sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
-            pageNumber:1,                       //初始化加载第一页，默认第一页
-            pageSize: 10,                       //每页的记录行数（*）
-            pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-            strictSearch: true,
-            showColumns: true,                  //是否显示所有的列
-            showRefresh: true,                  //是否显示刷新按钮
-            minimumCountColumns: 2,             //最少允许的列数
-            clickToSelect: true,                //是否启用点击选中行
-            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
-            showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
-            cardView: false,                    //是否显示详细视图
-            detailView: false,                   //是否显示父子表
-            columns: [{
-                checkbox: true
-            }, {
-                field: 'beComp',
-                title: '投诉部门'
-            }, {
-                field: 'complainant',
-                title: '投诉人'
-            }, {
-                field: 'compTime',
-                title: '投诉时间'
-            }, {
-                field: 'status',
-                title: '受理情况'
-            }, ]
-        });
-    };
-
-    //得到查询的参数
-    oTableInit.queryParams = function (params) {
-        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-          /*  content: params.content,   //页面大小
-            offset: params.compId,  //页码
-*/           beComp: $("#txt_search_departmentname").innerHTML,
-            status: $("#txt_search_statu").val()
-        };
-        return temp;
-    };
-    return oTableInit;
-};
-
-
-var ButtonInit = function () {
-    var oInit = new Object();
-    var postdata = {};
-
-    oInit.Init = function () {
-        //初始化页面上面的按钮事件
-    };
-
-    return oInit;
-};
+                            	var cmp_content = addDialog.find("#cmp_content").val();  
+        						var complainant = addDialog.find("#complainant").val();
+        						var tele = addDialog.find("#tele").val();
+        						var beComp = addDialog.find("#beComp").val();
+        						var price = addDialog.find("#price").val();
+        						
+        						
+        						var pirceUnit = addDialog.find("#pirceUnit").val();  
+        						var description = addDialog.find("#description").val();
+        						$(".bootbox-body #description").attr("value",$(".bootbox-body #myFrameDescription").contents().find("#editor").html());
+        						
+        						addDialog.find("#catalogies").val(catalogyIds);
+        						//异步提交表单
+        						addDialog.find("form").ajaxSubmit({
+          						    type:'post',
+          						    url: 'complaint_insert.do?',
+          						    success:function(result){
+//          						    	var result = jQuery.parseJSON(data);
+          						    	if(result.success==true){
+          						    		$.fn.bdmp.message.success("添加成功!");
+          						    		oTable.fnReloadAjax();
+          							   		addDialog.modal("hide");
+          	                   				return true;
+          						    	}else{
+          						    		$.fn.bdmp.message.error(result.message);
+          						    		return false;
+          						    	}
+          						    },
+          						    error:function(XmlHttpRequest,textStatus,errorThrown){
+          						    	$.fn.bdmp.message.error("添加失败!");
+          								return false;
+          						    }
+          						});
+        						
+                            	return false;
+                            }
+                        },
+                        "关闭": {
+                            className: "btn-default",
+                            callback: function () {
+                            	return true;
+                            }
+                        }
+                    }
+        		});
+            
+        						
+                            
+                        }
+                    }
+        		});
+            
+        
+	
+});
+                           
+                 
+        		
+            
+                
+		

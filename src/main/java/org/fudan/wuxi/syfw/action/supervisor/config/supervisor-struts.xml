@@ -5,7 +5,7 @@
 
 <struts>
 	<package name="supervisor-action" namespace="/jsp/syfw/feed" extends="base-default,json-default">
-	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	<!--action请求  位于namespace+action name下，method为对应处理此请求的相应方法  -->
 		
 		<action name="complaint_loadForUpdate" class="org.fudan.wuxi.syfw.action.supervisor.SupervisorAction" method="loadForUpdate">
 		

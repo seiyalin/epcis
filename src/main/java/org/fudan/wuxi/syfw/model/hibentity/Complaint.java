@@ -1,6 +1,7 @@
 package org.fudan.wuxi.syfw.model.hibentity;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,9 +34,9 @@ public class Complaint implements java.io.Serializable {
 	private String compId;
 	private String status;
 	private String beComp;
-	private String content;
-	@SuppressWarnings("unused")
-	private Timestamp compTime;
+	private String cmp_content;
+
+	private Date compTime;
 	private String complainant;
 	private Long tele;
 	private String result;
@@ -53,17 +54,17 @@ public class Complaint implements java.io.Serializable {
 			Timestamp compTime) {
 		this.status = status;
 		this.beComp = beComp;
-		this.content = content;
+		this.cmp_content = content;
 		this.compTime = compTime;
 	}
 
 	/** full constructor */
 	public Complaint(String status, String beComp, String content,
-			Timestamp compTime, String complainant, Long tele, String result,
+			Date compTime, String complainant, Long tele, String result,
 			Timestamp resTime, Set qandas) {
 		this.status = status;
 		this.beComp = beComp;
-		this.content = content;
+		this.cmp_content = content;
 		this.compTime = compTime;
 		this.complainant = complainant;
 		this.tele = tele;
@@ -74,15 +75,6 @@ public class Complaint implements java.io.Serializable {
 
 	// Property accessors
 
-	@Override
-	public String toString() {
-		return "ComplaintInfo [beComp=" + beComp + ", content="
-				+ content + ", compTime=" + getCompTime()
-				+ ", complainant=" + complainant
-				+ ", tele=" + tele
-				+ ", status=" + status + "]";
-	}
-	
 	public String getCompId() {
 		return this.compId;
 	}
@@ -107,22 +99,24 @@ public class Complaint implements java.io.Serializable {
 		this.beComp = beComp;
 	}
 
-	public String getContent() {
+/*	public String getContent() {
 		return this.content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
 	}
+*/
+	/*@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="Asia/Shanghai") */ 
 
-	public Timestamp getCompTime() {
+	public Date getCompTime() {
 	
-		Timestamp t = new Timestamp(System.currentTimeMillis());
-		return t;
-		/*return this.compTime;*/
+		/*Timestamp t = new Timestamp(System.currentTimeMillis());
+		return t;*/
+		return this.compTime;
 	}
 
-	public void setCompTime(Timestamp compTime) {
+	public void setCompTime(Date compTime) {
 		
 		this.compTime = compTime;
 	}
@@ -165,6 +159,14 @@ public class Complaint implements java.io.Serializable {
 
 	public void setQandas(Set qandas) {
 		this.qandas = qandas;
+	}
+
+	public String getCmp_content() {
+		return cmp_content;
+	}
+
+	public void setCmp_content(String cmp_content) {
+		this.cmp_content = cmp_content;
 	}
 
 

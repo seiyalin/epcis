@@ -163,7 +163,7 @@ Purchase: http://wrapbootstrap.com
 			                                        </div>
 			                                    </div>
                                    <div class="panel-body" style="padding-bottom:0px;">
-        <div class="panel panel-default">
+       <!--  <div class="panel panel-default">
             <div class="panel-heading">查询条件</div>
             <div class="panel-body">
                 <form id="formSearch" class="form-horizontal">
@@ -183,57 +183,28 @@ Purchase: http://wrapbootstrap.com
                 </form>
             </div>
         </div>       
-
-        <div id="toolbar" class="btn-group">
-            <button id="btn_add" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-            </button>
-            <button id="btn_edit" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-            </button>
-            <button id="btn_delete" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-            </button>
-        </div>
-        <table id="tb_departments"></table>
-    </div>
+ -->
+    
+       <table class="table table-striped table-bordered table-hover" id="product_datatable" width="100%" >
+			                                        <thead>
+														<tr>
+															<th width="5%">
+																<label class="checkbox_label">
+																	<input class="colored-blue group-checkable" type="checkbox"><span class="text"></span>
+																</label>
+															</th>
+															<th width="15%">投诉单位</th>
+															<th width="15%">投诉标题</th>
+															<th width="15%">联系电话</th>
+															<th width="15%">状态</th>
+															<th width="10%">创建时间</th>
+														</tr>
+													</thead>
+			                                        <tbody>
+			                                        </tbody>
+			                                    </table>
                                     
-                                    
-                                    
-                                    
-                                   <!--  <table class="table table-striped table-bordered table-hover" id="orderInfo_datatable" width="100%">
-                                        <thead >
-											<tr>
-												<th width="5%">
-													<label class="checkbox_label">
-														<input class="colored-blue group-checkable" type="checkbox"><span class="text"></span>
-													</label>
-												</th>
-												<th width="15%">投诉对象</th>
-												<th width="15%">投诉标题</th>
-												<th width="15%">投诉人</th>
-												<th width="15%">投诉时间</th>
-												<th width="15%">联系电话</th>
-												<th width="15%">受理状态</th>
-											</tr>
-										</thead>
-										<tbody>
-										<tr>
-												<td width="5%">
-													<label class="checkbox_label">
-														<input class="colored-blue group-checkable" type="checkbox"><span class="text"></span>
-													</label>
-												</td>
-												<td>投诉对象</td>
-												<td >投诉对象</td>
-												<td >投诉对象</td>
-												<td>投诉对象</td>
-												<td >投诉对象</td>
-												<td >投诉对象</td>
-											</tr>
-                                        
-                                        </tbody>
-                                    </table> -->
+                                  
                                 </div>
                             </div>
                         </div>
@@ -270,7 +241,7 @@ Purchase: http://wrapbootstrap.com
 
     </div>
 	
-	 分类选择框 
+<!-- 	 分类选择框  -->
 	<div id="catalogyDialog" style="display:none;">
 		<div id="horizontal-form">
             <div class="form-group">
@@ -311,27 +282,17 @@ Purchase: http://wrapbootstrap.com
                <div class="form-group">
                    <label for="cover" class="col-sm-1 control-label no-padding-right"><span class="label label-darkpink graded">投诉标题</span></label>
                      <div class="col-sm-11">
-							   <input type="text" class="form-control" id="brief" name="po.brief" placeholder="水产品质量问题" maxlength="10">
+							   <input type="text" class="form-control" id="cmp_content" name="complaintInfo.cmp_content" placeholder="水产品质量问题" maxlength="10">
 						   </div>
                </div>
                
-     		 <!--  <div class="row">
-				    <div class="col-sm-12">
-				        <div class="form-group">
-						   <label for="size" class="col-sm-1 control-label no-padding-right"><span class="label label-darkpink graded">投诉内容</span></label>
-						   <div class="col-sm-11">
-							   <input type="text" class="form-control" id="brief" name="po.brief" placeholder="我购买的水产品有质量问题" maxlength="10">
-						   </div>
-					   </div>
-				    </div>
-				</div> -->
-				
+ 
 				<div class="row">
 				    <div class="col-sm-6">
 				        <div class="form-group">
 						   <label for="code" class="col-sm-2 control-label no-padding-right"><span class="label label-darkpink graded">投诉人身份</span></label>
 						   <div class="col-sm-10">
-							   <input type="text" class="form-control" id="no" name="po.no" placeholder="消费者" maxlength="50">
+							   <input type="text" class="form-control" id="complainant" name="complaintInfo.complainant" placeholder="消费者" maxlength="50">
 						   </div>
 					   </div>
 				    </div>
@@ -340,25 +301,14 @@ Purchase: http://wrapbootstrap.com
 				        <div class="form-group">
 						   <label for="specification" class="col-sm-2 control-label no-padding-right"><span class="label label-darkpink graded">联系电话</span></label>
 						   <div class="col-sm-10">
-							   <input type="text" class="form-control" id="specification" name="po.specification"  maxlength="50">
+							   <input type="text" class="form-control" id="tele" name="complaintInfo.tele"  maxlength="50">
 						   </div>
 					   </div>
 				    </div>
 				</div>
 				
 				<div class="row">
-					<!-- 
-				    <div class="col-sm-6">
-				        <div class="form-group">
-						   <label for="brand" class="col-sm-2 control-label no-padding-right"><span class="label label-darkpink graded">品牌</span></label>
-		                   <div class="col-lg-10">
-			                   <select class="form-control brand" name="brand" id="brand" data-bv-field="brand">
-			                            <option value="">请选择 </option>
-			                   </select><i class="form-control-feedback" data-bv-field="brand" style="display: none;"></i>
-		                   </div>
-					   </div>
-				    </div>
-				     -->
+		
 				     <div class="col-sm-6">
 				        <div class="form-group">
 						   <label for="brand" class="col-sm-2 control-label no-padding-right"><span class="label label-darkpink graded">投诉单位</span></label>
@@ -373,7 +323,7 @@ Purchase: http://wrapbootstrap.com
 				        <div class="form-group">
 						   <label for="sourceArea" class="col-sm-2 control-label no-padding-right"><span class="label label-darkpink graded">原产地单位</span></label>
 						   <div class="col-sm-10">
-							   <input type="text" class="form-control" id="sourceArea" name="po.sourceArea" placeholder="原产地" maxlength="50">
+							   <input type="text" class="form-control" id="beComp" name="complaintInfo.beComp" placeholder="投诉部门" maxlength="50">
 						   </div>
 					   </div>
 				    </div>
@@ -438,13 +388,13 @@ Purchase: http://wrapbootstrap.com
 					   </div>
 				    </div>
 				</div> -->
-				<!-- <div class="form-group">
+				<div class="form-group">
                    <label for="code" class="col-sm-1 control-label no-padding-right"><span class="label label-darkpink graded">分类</span></label>
                    <div class="col-sm-11" id="selectCatalogyBt">
                        <div class="bootstrap-tagsinput" id="catalogiesStr"></div>
 	                   <input type="hidden" id="catalogies" name="po.catalogies"></input>
                    </div>
-               </div> -->
+               </div>
                <div class="form-group">
                    <label for="description" class="col-sm-1 control-label no-padding-right"><span class="label label-default graded">投诉详情</span></label>
                    <div class="col-sm-12">
@@ -491,7 +441,7 @@ Purchase: http://wrapbootstrap.com
 	<script src="assets/js/upload/jquery.form.min.js"
 		type="text/javascript"></script>
 
-	<script src="assets/js/page/complain.js"></script>
+	<!-- <script src="assets/js/page/complain.js"></script> -->
 	
 	
 	<script src="assets/js/upload/jquery.form.min.js"  type="text/javascript"></script>

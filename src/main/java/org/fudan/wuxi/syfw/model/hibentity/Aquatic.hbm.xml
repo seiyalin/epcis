@@ -44,10 +44,10 @@
             <column name="picture" length="200" />
         </property>
         <property name="brief" type="java.lang.String">
-            <column name="brief" length="65535" />
+            <column name="brief" length="300" />
         </property>
         <property name="description" type="java.lang.String">
-            <column name="description" length="65535" />
+            <column name="description" length="600" />
         </property>
         <property name="sourceArea" type="java.lang.String">
             <column name="sourceArea" length="200" />

@@ -8,16 +8,16 @@
     <class name="org.fudan.wuxi.syfw.model.hibentity.Complaint" table="complaint" catalog="epcis_demo">
         <id name="compId" type="java.lang.String">
             <column name="Comp_ID" />
-            <generator class="identity"></generator>      
+            <generator class="uuid.hex"></generator>      
         </id>
         <property name="status" type="java.lang.String">
-            <column name="status" length="65535" not-null="true" />
+            <column name="status" length="200" not-null="true" />
         </property>
         <property name="beComp" type="java.lang.String">
-            <column name="Be_comp" length="65535" not-null="true" />
+            <column name="Be_comp" length="50" not-null="true" />
         </property>
-        <property name="content" type="java.lang.String">
-            <column name="content" length="65535" not-null="true" />
+        <property name="cmp_content" type="java.lang.String">
+            <column name="content" length="200" not-null="true" />
         </property>
         <property name="compTime" type="java.sql.Timestamp">
             <column name="comp_time" length="19" not-null="true" />
@@ -26,10 +26,10 @@
             <column name="complainant" length="30" />
         </property>
         <property name="tele" type="java.lang.Long">
-            <column name="tele" precision="10" scale="0" />
+            <column name="tele" precision="11" scale="0" />
         </property>
         <property name="result" type="java.lang.String">
-            <column name="result" length="65535" />
+            <column name="result" length="200" />
         </property>
         <property name="resTime" type="java.sql.Timestamp">
             <column name="res_time" length="19" />

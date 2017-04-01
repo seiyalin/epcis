@@ -14,13 +14,13 @@
             <column name="Comp_ID" not-null="true" />
         </many-to-one>
         <property name="answer" type="java.lang.String">
-            <column name="answer" length="65535" not-null="true" />
+            <column name="answer" length="400" not-null="true" />
         </property>
         <property name="answerTime" type="java.sql.Timestamp">
             <column name="answer_time" length="19" />
         </property>
         <property name="question" type="java.lang.String">
-            <column name="question" length="65535" not-null="true" />
+            <column name="question" length="200" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
